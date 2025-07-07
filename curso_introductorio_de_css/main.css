@@ -1,0 +1,331 @@
+/* --- 1. Reset Básico / Estilos Generales --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    color: black;
+    scroll-padding-top: 150px; /* Ajusta este valor al alto de tu header + un poco de margen */
+}
+
+
+/* --- 2. Definicion cuadricula de la pagina --- */
+/* --- GRID CONTAINER PRINCIPAL --- */
+.grid-container {
+    display: grid;
+    /* Define las filas:
+       1. Auto para el header (toma el espacio que necesita)
+       2. 1fr para el área principal (sidebar y contenido, toma el resto del espacio disponible)
+    */
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 250px 1fr; /* Sidebar de 250px, Contenido flexible */
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+}
+
+/* Asignación de áreas a la cuadrícula */
+.grid-header {
+    grid-column: 1/-1; /* Le dice a grid, que el header va ocupar la fila completa. Ocupa de la columna 1 hasta la última (-1) */
+    display: flex; /* Usamos flexbox dentro del header para alinear */
+    background-color: var(--color-primario);
+    color: var(--color-texto-claro);
+    padding: 15px;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Para que esté por encima si hay algo pegajoso */
+}
+
+/* --- 3. Estilos del Encabezado (Header) --- */
+/* Estilos específicos para el logo y el título en escritorio si es necesario */
+.grid-header .logo-header {
+  max-width: 100px;
+  height: auto;
+}
+
+.grid-header .nombre-header-curso {
+  font-size: 40px;
+}
+
+/* --- 4. Estilos de Navegación de sidebar--- */
+
+.grid-sidebar {
+    grid-column: 1; /*Columna de la izquierda*/
+    grid-row: 2;    /*Fila del contenido principal*/ 
+    background-color: var(--color-fondo-claro);
+    border-right: 2px solid var(--color-linea);
+    padding: 20px;
+     /* --- ¡LA CLAVE DEL SCROLL INDEPENDIENTE PARA EL SIDEBAR! --- */
+    overflow-y: auto; /* Permite scroll vertical si el contenido excede la altura */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.grid-sidebar h2 {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.grid-sidebar ul {
+    list-style: none;  
+}
+
+.grid-sidebar li a {
+    display: block; /*Para que el enlace ocupe todo el ancho del li*/
+    padding: 8px 0 8px 20px;
+    text-decoration: none;
+    color:var(--color-acento);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.2s ease;
+}
+
+.grid-sidebar li a:hover {
+    background-color: #e2e2e2;
+    color: var(--color-primario);
+}
+
+/* --- 5. Estilos de Contenido principal (main) --- */
+
+.grid-main-content {
+    grid-column: 2;
+    grid-row: 2;
+    background-color: white;
+    padding: 20px;
+    /* --- ¡LA CLAVE DEL SCROLL INDEPENDIENTE PARA EL CONTENIDO PRINCIPAL! --- */
+    overflow-y: auto; /* Permite scroll vertical si el contenido excede la altura */
+    display: flex; /* Convierte el main content en un contenedor flex */
+    justify-content: center; /* ¡Centra los ítems flex (tu .content-wrapper) horizontalmente! */
+    align-items: flex-start; /* Alinea los ítems al inicio verticalmente (evita estiramiento) */
+}   /* No necesitas flex-direction: column; si solo hay un hijo o si el flujo es vertical por defecto */
+
+.content-wrapper {
+    max-width: 800px; /* Limita el ancho del contenido */
+    width: 100%;  /* Asegura que ocupe todo el ancho disponible hasta el max-width */
+}   /* ¡NO necesitas margin: 0 auto; aquí, porque el padre ya lo está centrando! */
+
+.grid-main-content section h2 {
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--color-primario); /* Separador visual entre secciones */
+    font-size: 40px;
+}
+
+.grid-main-content section {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #949191;
+}
+.curso-tema__navegacion-interna {
+    display: block; /*incluyo esta linea para que tenga propiedades de bloque por si solo*/
+    width: 120px;
+    background-color: var(--color-acento);
+    color: var(--color-texto-claro);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 2px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.2s ease;
+}
+
+.curso-tema__navegacion-interna:hover {
+    background-color: var(--color-primario);
+}
+
+/* --- Contenedor de los enlaces: para agrupar los enlaces tipo botón --- */
+/* Esto ayudará a manejar el margen entre los botones y el siguiente título */
+
+.curso-tema__navegacion-seccion {
+    margin-bottom: 30px; /* Margen debajo de los botones para separarlos del siguiente contenido */
+    display: flex; /* Para que los botones se alineen horizontalmente si son inline-block */
+    justify-content: space-between;
+    gap: 15px; /* Alternativa a margin-right para separar botones, más moderna */
+    /* Puedes usar flex-wrap: wrap; si los botones podrían exceder el ancho y necesitas que salten de línea */
+}
+
+/* --- Estilos para el título secundario (ej. Aprende CSS) --- */
+.curso-tema__subtitulo {
+    margin: 20px 0 15px 0;
+    border: 1px solid var(--color-acento);
+    border-radius: 8px;
+    box-shadow: 0 4px 5px rgba(11, 23, 187, 0.2);
+    color: var(--color-texto-oscuro);
+    font-size: 28px;
+}
+
+/* --- Estilos para los párrafos --- */
+.curso-tema__parrafo {
+    margin-bottom: 10px;
+    line-height: 25px;
+    color: #444;
+}
+/* --- Estilos para las imagenes contenidas en los parrafos --- */
+.curso-tema__parrafo img {
+    max-width: 400px;
+    height: auto;
+}
+
+/* --- Estilos para el enlace de acción al final de la sección --- */
+.curso-tema__enlace-accion {
+    display: block;
+    background-color: var(--color-acento);
+    color: var(--color-texto-claro);
+    text-decoration: none;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.2s ease;
+}
+
+.curso-tema__enlace-accion:hover {
+    background-color: var(--color-primario);
+    color: var(--color-texto-claro);
+}
+
+/* ---ESTILOS DE BOTON DE HAMBURGUESA (GLOBALES) ---*/
+.hamburger-menu {
+    display: none; /*Ocultar por defecto en escritorio*/
+    position: absolute; /*Posicionamiento absoluto para colocarlo sobre el header*/
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1000; /*Asegurar que este por encima de otros elementos*/
+    }
+    
+    /* Transición para las líneas de la hamburguesa (puede ser global) */
+    .hamburger-icon {
+    transition: all 0.3s ease; /*Transicion suave para la animacion*/
+    }
+
+.campo-resaltado {
+    background-color: #ffcccc; /*rojo claro*/
+    border: 2px solid #cc0000; /*borde rojo*/
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* --- MEDIA QUERIES PARA ADAPTABILIDAD --- */
+
+/* Media Query para pantallas medianas (tabletas) */
+        /* En pantallas más pequeñas, apilamos el header y el contenido.
+           La barra lateral se esconderá o se convertirá en un menú "hamburguesa".
+           Por simplicidad, aquí la apilamos abajo del header y ocupa todo el ancho.
+        */
+@media (max-width: 768px) {
+    /* 1. Redefinir las columnas del contenedor */
+    .grid-container {
+        grid-template-columns: 1fr; /* Una sola columna que ocupa todo el ancho */
+        grid-template-rows: auto /*Header en auto*/
+                                 /* Eliminamos la fila de la sidebar de aquí, ya que la mostraremos/ocultaremos con JS */
+                            1fr; /*contenido principal en 1fr*/
+        height: auto; /*Ajusta la altura a auto para que el contenido principal fluya*/                           
+    }
+ 
+    /* 3. Reasignar la posición de cada ítem en la nueva cuadrícula */
+    .grid-header {
+        grid-column: 1; /*ocupa la unica columna*/
+        grid-row: 1; /*Se posiciona en la primera fila*/
+        position: relative; /*Para que el boton de hamburguesa se posicione respecto a el*/
+        text-align: left; /*alinea el titulo a la izquierda*/
+        padding-right: 70px; /*Deja espacio para el boton de hamburguesa*/
+    }
+
+    .hamburger-menu {
+        display: block;/*Mostrar el boton de hamburguesa solo en moviles*/
+    }
+    
+    .hamburger-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-fondo-claro); /*Color de las lineas de hamburguesa*/
+    margin: 5px 0;
+    }
+
+    /* --- ANIMACIÓN DE HAMBURGUESA A "X" --- */
+/* Selecciona la PRIMERA línea cuando el botón hamburguesa tiene la clase 'active' */
+.hamburger-menu.active .hamburger-icon:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); /* Mueve la primera línea 8px hacia abajo y la rota 45 grados */
+}
+
+/* Selecciona la SEGUNDA línea cuando el botón hamburguesa tiene la clase 'active' */
+.hamburger-menu.active .hamburger-icon:nth-child(2) {
+    opacity: 0; /* Oculta la línea del medio haciendola totalmente transparente */
+}
+
+/* Selecciona la TERCERA línea cuando el botón hamburguesa tiene la clase 'active' */
+.hamburger-menu.active .hamburger-icon:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg); /* Mueve la tercera línea 8px hacia arrib y la rota -45 grados */
+}
+
+
+    /* ESTILOS CLAVE PARA EL MENÚ HAMBURGUESA */
+    .grid-sidebar {
+        position:fixed; /* Fija la sidebar en la pantalla */
+        top: 0;
+        left: -250px;  /* Oculta la sidebar fuera de la pantalla (su propio ancho) */
+        width: 250px;  /* Ancho fijo de la sidebar */
+        height: 100%;  /* Ocupa toda la altura de la ventana */
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        transition: left 0.3s ease-in-out; /*Animacion de entrada/salida*/
+        z-index: 999; /* Asegura que esté por encima de otros elementos */
+        padding-top: 60px; /* Espacio para que el contenido no se superponga con la parte superior */
+        background-color: var(--color-fondo-claro);
+        color: var(--color-texto-oscuro);
+    }
+    
+    /* Clase que JavaScript añadirá para mostrar el menú */
+    .grid-sidebar.active { 
+        left: 0; /* Muestra la sidebar deslizándola a la pantalla */
+    }
+
+    body.sidebar-open {
+        overflow: hidden; /* Evita el scroll del fondo cuando el menú está abierto */
+    }
+
+/*Puedes ajustar la posición del main content en móviles si es necesario,
+pero con position:fixed en la sidebar, el main content debería fluir bien*/
+    .grid-main-content {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .grid-main-content section h2 {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #0b17bb; /* Separador visual entre secciones */
+    font-size: 25px;
+}
+
+    .grid-header .nombre-header-curso {
+    font-size: 25px;
+}
+
+.curso-tema__parrafo img {
+    max-width: 300px;
+    height: auto;
+}
+
+}
+
+/* Media Query para pantallas pequeñas (moviles) */
+
+/* Variables para paleta de colores*/
+:root {
+    --color-primario: #1a2a6c; 
+    --color-acento: #3498db;
+    --color-fondo-claro: #f8f8f8;
+    --color-texto-oscuro: #333;
+    --color-texto-claro: white;
+    --color-linea: #ddd; /*para bordes y separadores*/
+}

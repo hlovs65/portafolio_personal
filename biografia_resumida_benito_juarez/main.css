@@ -1,0 +1,308 @@
+/* --- 1. Reset Básico / Estilos Generales --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f0f0f0;
+    color: black;
+    scroll-padding-top: 150px; /* Ajusta este valor al alto de tu header + un poco de margen */
+}
+
+
+/* --- 2. Definicion cuadricula de la pagina --- */
+/* --- GRID CONTAINER PRINCIPAL --- */
+.contenedor-principal-grid {
+    display: grid;
+    /* Define las filas:
+       1. Auto para el header (toma el espacio que necesita)
+       2. 1fr para el área principal (sidebar y/o contenido, toma el resto del espacio disponible)
+       3. Auto para un posible footer (toma el espacio que necesita)
+    */
+    /*Dibuja tus filas y columnas explicitamente*/
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
+
+    /* Dibuja tu layout con los nombres de area*/
+    grid-template-areas: "header header header"  /* Header ocupando todo el ancho superior. */
+                         "sidebar main-content ." /* Sidebar a la izquierda y main-content a la derecha, en la fila central y vacio a la derecha*/
+                         ".      .      .     ";  /* Si no hay footer, puedes dejar celdas vacías o ajustar las filas */
+
+    gap: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Asignación de áreas a la cuadrícula */
+.header-grid {
+    grid-area: header; /* Le dice a grid, que el header va ocupar la fila completa. Ocupa el area llamada header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    gap: 15px;
+    background-color: lightblue;
+    border-bottom: 1px solid #eee;
+    border: 1px solid red;
+}
+
+/* --- 3. Estilo para header --- */
+.header-content-wrapper {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea en pantallas pequeñas */
+    max-width: 100%; /* Asegura que no se desborde del header-grid */
+    text-align: center;
+}
+ 
+.header-images-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 150px;
+    border: 1px solid;
+}
+ 
+.header-images-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 150px;
+    border: 1px solid;
+}
+
+.header-images-left img, 
+.header-images-right img { 
+    max-width: 100%; /* Las imágenes no deberían exceder el ancho de sus nuevos contenedores */
+    height: auto;
+    border-radius: 8px;  
+    /* Ajusta este valor si necesitas que las imágenes sean más pequeñas */
+    max-height: 100px; /* Limita la altura para que no sean demasiado grandes */
+    width: auto;
+    box-shadow: 2px 2px 10px black;
+}
+
+.bioResBJ_1 {
+    overflow-wrap: break-word;
+    white-space: normal;
+    text-align: center;
+    flex: 1, 1, auto;
+    min-width: 0;
+    max-width: 50%;
+    border-radius: 8px;  
+    box-shadow: 2px 2px 10px black;
+}
+
+/* --- 4. Estilos de Navegación de sidebar--- */
+
+.grid-sidebar {
+    grid-area: sidebar; /* Este elemento ocupará el área llamada 'sidebar' */
+    background-color: var(--color-fondo-claro);
+    border-right: 2px solid var(--color-linea);
+    padding: 20px;
+     /* --- ¡LA CLAVE DEL SCROLL INDEPENDIENTE PARA EL SIDEBAR! --- */
+    overflow-y: auto; /* Permite scroll vertical si el contenido excede la altura */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.grid-sidebar h2 {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.grid-sidebar ul {
+    list-style: none;  
+}
+
+.grid-sidebar li a {
+    display: block; /*Para que el enlace ocupe todo el ancho del li*/
+    padding: 8px 0 8px 20px;
+    text-decoration: none;
+    color:var(--color-acento);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.2s ease;
+}
+
+.grid-sidebar li a:hover {
+    background-color: #e2e2e2;
+    color: var(--color-primario);
+}
+
+
+/* Y para el contenido principal: */
+.contenido-principal-grid {
+    /* Esto es lo clave: el contenido principal se posiciona en la segunda columna  */
+    grid-area: main-content;  /* Este elemento ocupará el área llamada 'main-content' */
+    display: grid; /* Sigue siendo un Grid anidado */
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background-color: lightcoral;
+    padding: 20px ;
+}
+
+/* ---ESTILOS DE BOTON DE HAMBURGUESA (GLOBALES) ---*/
+.hamburger-menu {
+    display: none; /*Ocultar por defecto en escritorio*/
+    position: absolute; /*Posicionamiento absoluto para colocarlo sobre el header*/
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1000; /*Asegurar que este por encima de otros elementos*/
+    }
+    
+    /* Transición para las líneas de la hamburguesa (puede ser global) */
+    .hamburger-icon {
+    transition: all 0.3s ease; /*Transicion suave para la animacion*/
+    }
+
+
+/* --- Media Query para Pantallas Pequeñas (Móviles) --- */
+@media (max-width: 768px) {
+     /* Ajustes para el Contenedor Principal de la Cuadrícula */
+    .contenedor-principal-grid {
+        /* Cambia el diseño de Grid para que solo tenga una columna principal */
+        grid-template-columns: 1fr;
+        /* Y apilamos las areas una debajo de otra */
+        grid-template-areas: "header"
+                             "sidebar"
+                             "main-content"
+                             ". "; /* Fila vacia. Area para posible Footer*/
+        gap: 15px; /* Reduce el espacio entre elementos del Grid en móvil */
+        margin: 10px; /* Reduce el margen exterior para más espacio en pantalla */
+        padding: 10px; /* Reduce el padding interno */
+        justify-content: center;
+    }
+
+        .contenido-principal-grid {
+            /* *** CAMBIO CRUCIAL AQUÍ *** */
+        grid-column: 1; /* Le decimos que ocupe la única columna disponible */
+        grid-row: auto; /* Permite que ocupe su espacio en la fila automáticamente */
+
+        grid-template-columns: 1fr; /* Apila las columnas internas */
+        gap: 20px;
+        padding: 0;
+        width: 100%; /* Asegura que ocupe todo el ancho disponible en la celda */
+    }
+
+    .header-grid {
+        align-items: center;
+        width: 100%;
+    }
+
+    .header-content-wrapper {
+    /*    flex-direction: row; */
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        padding: 5px;
+    }
+
+
+    .bioResBJ_1 {
+        max-width: 100%;
+        font-size: 16px;
+        min-width: 0;
+    }
+
+    .header-images-left,
+    .header-images-right {
+        max-width: 25%;
+        justify-content: center;
+    }
+
+    .header-images-left img,
+    .header-images-right img {
+        max-height: 50px;
+        max-width: 100%;
+    }
+
+    .sec_01, .sec_02, .sec_03 {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    p {
+        width: auto;
+    }
+
+    .hamburger-menu {
+        display: block;/*Mostrar el boton de hamburguesa solo en moviles*/
+    }
+    
+    .hamburger-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-fondo-claro); /*Color de las lineas de hamburguesa*/
+    margin: 5px 0;
+    }
+
+    /* --- ANIMACIÓN DE HAMBURGUESA A "X" --- */
+/* Selecciona la PRIMERA línea cuando el botón hamburguesa tiene la clase 'active' */
+.hamburger-menu.active .hamburger-icon:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); /* Mueve la primera línea 8px hacia abajo y la rota 45 grados */
+}
+
+/* Selecciona la SEGUNDA línea cuando el botón hamburguesa tiene la clase 'active' */
+.hamburger-menu.active .hamburger-icon:nth-child(2) {
+    opacity: 0; /* Oculta la línea del medio haciendola totalmente transparente */
+}
+
+/* Selecciona la TERCERA línea cuando el botón hamburguesa tiene la clase 'active' */
+.hamburger-menu.active .hamburger-icon:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg); /* Mueve la tercera línea 8px hacia arrib y la rota -45 grados */
+}
+
+
+    /* ESTILOS CLAVE PARA EL MENÚ HAMBURGUESA */
+    .grid-sidebar {
+        position:fixed; /* Fija la sidebar en la pantalla */
+        top: 0;
+        left: -250px;  /* Oculta la sidebar fuera de la pantalla (su propio ancho) */
+        width: 250px;  /* Ancho fijo de la sidebar */
+        height: 100%;  /* Ocupa toda la altura de la ventana */
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        transition: left 0.3s ease-in-out; /*Animacion de entrada/salida*/
+        z-index: 999; /* Asegura que esté por encima de otros elementos */
+        padding-top: 60px; /* Espacio para que el contenido no se superponga con la parte superior */
+        background-color: var(--color-fondo-claro);
+        color: var(--color-texto-oscuro);
+    }
+    
+    /* Clase que JavaScript añadirá para mostrar el menú */
+    .grid-sidebar.active { 
+        left: 0; /* Muestra la sidebar deslizándola a la pantalla */
+    }
+
+    body.sidebar-open {
+        overflow: hidden; /* Evita el scroll del fondo cuando el menú está abierto */
+    }
+
+
+
+}
+
+/* Variables para paleta de colores*/
+:root {
+    --color-primario: #1a2a6c; 
+    --color-acento: #3498db;
+    --color-fondo-claro: #f8f8f8;
+    --color-texto-oscuro: #333;
+    --color-texto-claro: white;
+    --color-linea: #ddd; /*para bordes y separadores*/
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Curso introductorio de CSS</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+
+<body>
+    <div class="grid-container">
+        <header class="grid-header">
+            <img src="leal360-seeklogo.png" class="logo-header">
+            <h1 class="nombre-header-curso">Curso Introductorio de CSS.</h1>
+            <button class="hamburger-menu" aria-label="Abrir menu de navegacion">
+                <span class="hamburger-icon"></span>
+                <span class="hamburger-icon"></span>
+                <span class="hamburger-icon"></span>
+            </button>
+        </header>
+
+        <nav class="grid-sidebar" id="main-sidebar">
+            <h2>Tutorial de CSS</h2>
+            <ul>
+                <li><a href="#tema1">Inicio</a></li>
+                <li><a href="#tema2">Introduccion</a></li>
+                <li><a href="#tema3">Sintaxis</a></li>
+                <li><a href="#tema4">Selectores</a></li>
+                <li><a href="#tema5">Como usar CSS</a></li>
+                <li><a href="#tema6">Comentarios</a></li>
+                <li><a href="#tema7">Colores</a></li>
+                <li><a href="#tema8">Fondos</a></li>
+                <li><a href="#tema9">Bordes</a></li>
+                <li><a href="#tema10">Margenes</a></li>
+                <li><a href="#tema11">Relleno</a></li>
+                <li><a href="#tema12">Altura/ancho</a></li>
+                <li><a href="#tema13">Modelo de caja</a></li>
+                <li><a href="#tema14">Esquema</a></li>
+                <li><a href="#tema15">Texto</a></li>
+            </ul>
+        </nav>
+
+        <main class="grid-main-content">
+            <div class="content-wrapper">
+                <!-- Tema1 Inicio-->
+                <section id="tema1" class="curso-tema">
+                    <h2 class="curso-tema__titulo">Inicio Tutorial de CSS</h2>
+                    <div class="curso-tema__navegacion-seccion">
+                        <a href="#tema1" class="curso-tema__navegacion-interna">Inicio</a>
+                        <a href="#tema2" class="curso-tema__navegacion-interna">Siguiente</a>
+                    </div>
+
+                    <div class="curso-tema__contenido-principal">
+                        <h3 class="curso-tema__subtitulo">Aprende CSS</h3>
+                        <p class="curso-tema__parrafo">CSS es el lenguaje que usamos para dar estilo a un documento
+                            HTML.</p>
+                        <p class="curso-tema__parrafo">CSS describe cómo deben mostrarse los elementos HTML.</p>
+                        <p class="curso-tema__parrafo">Este tutorial le enseñará CSS desde lo básico hasta lo avanzado.
+                        </p>
+                    </div>
+                    <div class="curso-tema__contenido-principal">
+                        <h3 class="curso-tema__subtitulo">Ejemplos en cada capítulo</h3>
+                        <p class="curso-tema__parrafo">Este tutorial de CSS contiene cientos de ejemplos de CSS.</p>
+                        <p class="curso-tema__parrafo">Con nuestro editor en línea, puedes editar el CSS y hacer clic en
+                            un botón para ver el resultado.</p>
+                    </div>
+                    <div class="curso-tema__contenido-principal">
+                        <h3 class="curso-tema__subtitulo">Utilice el menú</h3>
+                        <p class="curso-tema__parrafo">Recomendamos leer este tutorial, en el orden indicado en el menú
+                        </p>
+                        <p class="curso-tema__parrafo">Si tienes una pantalla grande, el menú siempre estará presente a
+                            la izquierda.</p>
+                        <p class="curso-tema__parrafo">Si tienes una pantalla pequeña, abre el menú haciendo clic en el
+                            símbolo del menú superior ☰ .</p>
+                    </div>
+                    <div class="curso-tema__contenido-principal">
+                        <h3 class="curso-tema__subtitulo">Plantillas CSS</h3>
+                        <p class="curso-tema__parrafo">Hemos creado algunas plantillas W3.CSS responsivas para que las
+                            uses.</p>
+                        <p class="curso-tema__parrafo">Eres libre de modificarlos, guardarlos, compartirlos y usarlos en
+                            todos tus proyectos.</p>
+                        <p class="curso-tema__parrafo">¡Plantillas CSS gratis!</p>
+                        <a href="#tema1" class="curso-tema__enlace-accion">Principio</a>
+                        <label for="miCampoText">Prueba</label>
+                        <input type="text" id="miCampoText">
+                    </div>
+                </section>
+                <!-- Tema2 Introduccion-->
+                <section id="tema2" class="curso-tema">
+                    <h2 class="curso-tema__titulo">Introduccion a CSS</h2>
+                    <div class="curso-tema__navegacion-seccion">
+                        <a href="#tema1" class="curso-tema__navegacion-interna">Previo</a>
+                        <a href="#tema3" class="curso-tema__navegacion-interna">Siguiente</a>
+                    </div>
+
+                    <div class="curso-tema__contenido-principal">
+                        <h3 class="curso-tema__subtitulo">¿Que es CSS?</h3>
+                        <ul class="curso-tema__parrafo">
+                            <li>CSS es el lenguaje que usamos para dar estilo a un documento HTML.</li>
+                        </ul>
+                        <ul class="curso-tema__parrafo">
+                            <li>CSS describe cómo se deben mostrar los elementos HTML en la pantalla, el papel o en
+                                otros medios.</li>
+                        </ul>
+                        <ul class="curso-tema__parrafo">
+                            <li>CSS ahorra mucho trabajo. Permite controlar el diseño de varias páginas web a la vez.
+                            </li>
+                        </ul>
+                        <ul class="curso-tema__parrafo">
+                            <li>Las hojas de estilo externas se almacenan en archivos CSS</li>
+                        </ul>
+                    </div>
+                    <div class="curso-tema__contenido-principal">
+                        <h3 class="curso-tema__subtitulo">Demostración CSS: ¡Una página HTML, varios estilos!</h3>
+                        <p class="curso-tema__parrafo">Aquí se muestra una página HTML con cuatro hojas de estilo
+                            diferentes.</p>
+                        <p class="curso-tema__parrafo">Haga clic en los enlaces "Hoja de estilo 1", "Hoja de estilo 2",
+                            "Hoja de estilo 3" y "Hoja de estilo 4" a continuación para ver los diferentes estilos:</p>
+                    </div>
+                    <div class="curso-tema__contenido-principal">
+                        <h3 class="curso-tema__subtitulo">CSS resolvió un gran problema</h3>
+                        <p class="curso-tema__parrafo">¡HTML NUNCA fue pensado para contener etiquetas para formatear
+                            una página web!</p>
+                        <p class="curso-tema__parrafo">HTML fue creado para describir el contenido de una página web,
+                            como:</p>
+                        <p class="curso-tema__parrafo">&lt;h1&gt;Este es un encabezado&lt;h1&gt;</p>
+                        <p class="curso-tema__parrafo">&lt;p&gt;Este es un párrafo.&lt;p&gt;</p>
+                        <p class="curso-tema__parrafo">Cuando se añadieron etiquetas como &lt;font&gt; y atributos de
+                            color a la especificación HTML 3.2, se desató una pesadilla para los desarrolladores web. El
+                            desarrollo de sitios web grandes, donde se añadían fuentes e información de color a cada
+                            página, se convirtió en un proceso largo y costoso.</p>
+                        <p class="curso-tema__parrafo">Para resolver este problema, el Consorcio World Wide Web (W3C)
+                            creó CSS.</p>
+                        <p class="curso-tema__parrafo">¡CSS eliminó el formato de estilo de la página HTML!</p>
+                    </div>
+                    <div class="curso-tema__contenido-principal">
+                        <h3 class="curso-tema__subtitulo">¡CSS ahorra mucho trabajo!</h3>
+                        <p class="curso-tema__parrafo">Las definiciones de estilo normalmente se guardan en archivos
+                            .css externos.</p>
+                        <p class="curso-tema__parrafo">¡Con un archivo de hoja de estilo externo, puedes cambiar el
+                            aspecto de un sitio web completo modificando solo un archivo!</p>
+                        <a href="#tema1" class="curso-tema__enlace-accion">Principio</a>
+                    </div>
+                </section>
+                <!-- Tema3 Sintaxis-->
+                <section id="tema3" class="curso-tema">
+                    <h2 class="curso-tema__titulo">Sintaxis CSS</h2>
+                    <div class="curso-tema__navegacion-seccion">
+                        <a href="#tema2" class="curso-tema__navegacion-interna">Previo</a>
+                        <a href="#tema4" class="curso-tema__navegacion-interna">Siguiente</a>
+                    </div>
+
+                    <div class="curso-tema__contenido-principal">
+                        <h3 class="curso-tema__subtitulo">Sintaxis CSS</h3>
+                        <p class="curso-tema__parrafo">Una regla CSS consta de un selector y un bloque de declaración.
+                        </p>
+                        <p class="curso-tema__parrafo"><img src="img_selector.gif"></p>
+                        <p class="curso-tema__parrafo">El selector apunta al elemento HTML que desea diseñar.</p>
+                        <p class="curso-tema__parrafo">El bloque de declaración contiene una o más declaraciones
+                            separadas por punto y coma.</p>
+                        <p class="curso-tema__parrafo">Cada declaración incluye un nombre de propiedad CSS y un valor,
+                            separados por dos puntos.</p>
+                        <p class="curso-tema__parrafo">Las declaraciones CSS múltiples se separan con punto y coma, y
+                            ​​los bloques de declaración están rodeados por llaves.</p>
+                        <a href="#tema1" class="curso-tema__enlace-accion">Principio</a>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src='main.js'></script>
+</body>
+
+</html>
