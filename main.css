@@ -57,6 +57,10 @@ body {
     /* Define la altura real de tu header */
     --footer-height: 52px;
     /* O la altura real de tu footer */
+    --color-principal: #3498db;   /* Un tono de azul para elementos clave (botones, enlaces principales) */
+    --color-secundario: #2c3e50;  /* Un gris oscuro o azul marino para fondos o texto de contraste */
+    --color-resaltado: #e67e22;   /* Un naranja o amarillo para elementos interactivos o de énfasis */
+    --color-corazon: #e74c3c;     /* Un rojo para icono del footer*/
 }
 
 /* ================================================================================ */
@@ -370,7 +374,7 @@ body {
     width: 100%;
     padding: 0 15px;
     margin-bottom: 30px;
-    text-align: left;
+    text-align: justify;
 }
 
 .about-text h1 {
@@ -474,7 +478,6 @@ body {
 /* ================================================================================ */
 .proyects-section {
     /*Estilo general al contenedor proyects-section */
-    border: 1px solid;
     text-align: center;
     background-color: var(--background-color-proyectos);
     color: var(--text-color);
@@ -569,7 +572,6 @@ body {
 /* --- 3.2.5 Estilos para la Sección Contacto.  --- */
 /* ================================================================================ */
 .contact-section {
-    border: 1px solid;
     background-color: var(--background-color);
     color: var(--text-color);
 }
@@ -638,24 +640,6 @@ body {
     color: var(--secondary-color);
 }
 
-/* --- Estilos para Redes Sociales --- */
-.social-links {
-    display: flex;
-    justify-content: center; /* Centra los íconos de redes sociales */
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.social-links a {
-    color: var(--text-color);
-    font-size: 2.2em;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--primary-color);
-    transform: translate(-5px);
-}
 
 /* --- Estilos para el Formulario de Contacto --- */
 .contact-form {
@@ -716,10 +700,52 @@ body {
     transform: translateY(-2px); /* Pequeño efecto de elevación */
 }
 
+/* ================================================================================ */
+/* --- 3.3 Estilos para la Sección Footer.  --- */
+/* ================================================================================ */
+.site-footer {
+    background-color: var(--color-secundario); /* Color de fondo del footer */
+    color: var(--light-text-color); /* Color del texto principal del footer */
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 50px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Estilos para Redes Sociales --- */
+.social-links {
+    display: flex;
+    justify-content: center; /* Centra los íconos de redes sociales */
+    gap: 25px;
+    margin: 15px 0;
+}
+
+.social-links a {
+    color: var(--border-color);  /* Color de los iconos sociales */
+    font-size: 1.8em;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color); /* Color de los iconos sociales al pasar el ratón */
+    transform: translate(-5px);
+}
+
+.site-footer p .fa-heart {
+    color: var(--color-corazon); /* Aquí se usó un color directo para el corazón */
+    margin: 0 5px;
+}
 
 
 /* ================================================================================ */
-/* --- 3.3 Estilos para Boton flotante.  --- */
+/* --- 3.4 Estilos para Boton flotante.  --- */
 /* ================================================================================ */
 .scroll-to-top-btn {
     position: fixed;
@@ -770,7 +796,6 @@ body {
             "footer-area";
         /*Ajusta el paddin lateral si el max-width se activa*/
         padding: 0 40px;
-        border: 1px solid blue;
     }
 
     /* En escritorio, el sidebar móvil no es necesario, lo ocultamos */
@@ -878,6 +903,38 @@ body {
 
     .proyects-section {
         padding: 80px 40px;
+    }
+
+    /* ================================================================================ */
+    /* ---  4.2.5 Estilos para la Sección Contacto.  --- */
+    /* ================================================================================ */
+    .contact-content-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 60px;
+    }
+
+    .contact-info,
+    .contact-form {
+        width: 45%;
+        max-width: 400px;
+    }
+
+    .contact-info p a {
+        font-size: 0.9em;
+    }
+
+    .contact-info h3,
+    .contact-form h3 {
+        font-size: 2em; /* Títulos más grandes en escritorio */
+    }
+
+    /* ================================================================================ */
+    /* ---  5.0 Estilos para la Sección Pie de pagina.  --- */
+    /* ================================================================================ */
+    .social-links a {
+        font-size: 2.5em; /* Iconos de redes sociales un poco más grandes */
     }
 }
 

@@ -69,12 +69,22 @@
             <!--Sobre mi-->
             <section id="sobre-mi" class="about-me-section">
                 <div class="about-text">
-                    <h1>Sobre Mi</h1>
-                    <p>Aqui escribir sobre mi experiencia, pasion por la tecnologia, etc.</p>
-                    <p>Puedo detallar mi trayectoria, mis intereses y lo que me impulsa como desarrollador</p>
+                    <h1>Sobre Mí: Salvador López Villafán</h1>
+                    <p>Soy un **desarrollador Front-End apasionado por construir experiencias web dinámicas e
+                        intuitivas**. Mi fascinación radica en transformar ideas en interfaces de usuario
+                        funcionales y visualmente atractivas.</p>
+                    <p>Con **más de 10 años de experiencia como analista programador en sistemas Mainframe IBM**, he
+                        cultivado una sólida base en el **análisis de sistemas, la lógica de programación y la
+                        resolución de problemas**. Esta trayectoria me da la capacidad para
+                        desglosar desafíos, identificar la causa raíz y diseñar soluciones eficientes, habilidades que
+                        aplico en cada proyecto de desarrollo web.</p>
+                    <p>Mi objetivo es combinar mi **experiencia analitica** con las últimas tendencias en **programación
+                        web dinámica** para crear soluciones que no solo funcionen, sino que también
+                        optimicen la experiencia del usuario. Siempre busco aprender y aplicar nuevas tecnologías para
+                        ofrecer resultados.</p>
                 </div>
                 <div class="about-image">
-                    <img src="https://placehold.co/600x400.png" alt="Mi perfil">
+                    <img src="pexels-gabby-k-5273566.jpg" alt="Mi perfil">
                 </div>
             </section>
             <!--Mis habilidades -->
@@ -85,12 +95,7 @@
                     <div class="skill-category">
                         <h3>Habilidades Tecnicas</h3>
                         <ul class="skill-list">
-                            <li>
-                                <span class="skill-icon">
-                                    <i class="fa-brands fa-html5" style="color: #FFD43B;"></i>
-                                </span>
-                                HTML5
-                            </li>
+                            <li><span class="skill-icon"><i class="fa-brands fa-html5"></i></span>HTML5</li>
                             <li><span class="skill-icon"><i class="fa-brands fa-css3-alt"></i></span>CSS3</li>
                             <li><span class="skill-icon"><i class="fa-brands fa-js"></i></span>JavaScript (ES6+)</li>
                             <li><span class="skill-icon"><i class="fa-solid fa-database"></i></span>SQL</li>
@@ -152,33 +157,29 @@
                 <div class="contact-content-wrapper">
                     <div class="contact-info">
                         <h3>Informacion de Contacto</h3>
-                        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:salvadorlopezvillafan@gmail.com">salvadorlopezvillafan@gmail.com</a></p>
+                        <p><i class="fas fa-envelope"></i> Email: <a
+                                href="mailto:salvadorlopezvillafan@gmail.com">salvadorlopezvillafan@gmail.com</a></p>
                         <p><i class="fas fa-phone-alt"></i> Telefono: +52 55 1243 4095</p>
                         <p><i class="fas fa-map-marker-alt"></i> Ubicacion: Tlalnepantla, Estado De Mexico</p>
-
-                        <div class="social-links">
-                            <a href="#" target="_blank" aria-label="Linkedin"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="Https://www.upwork.com/freelancers/~014044bbdc15edd965?mp_source=share" target="_blank" aria-label="Upwork"><i class="fab fa-upwork"></i></a>
-                        </div>
                     </div>
-                    <form class="contact-form" action="https://formspree.io/f/xwpbjzwv" method="post">
+
+                    <form class="contact-form" action="https://formspree.io/f/xwpbjzwv" method="post" id="contactForm">
                         <h3>Enviame un Mensaje</h3>
                         <div class="form-group">
                             <label for="name">Nombre:</label>
-                            <input type="text" id="name" name="name" required placeholder="Tu nombre">
+                            <input type="text" id="name" name="name" autocomplete="name">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" id="email" required placeholder="tu.email@example.com">
+                            <input type="email" id="email" name="_replyto" autocomplete="email">
                         </div>
                         <div class="form-group">
                             <label for="subject">Asunto:</label>
-                            <input type="text" id="subject" name="subject" required placeholder="Asunto del mensaje">
+                            <input type="text" id="subject" name="subject" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="massage">Mensaje:</label>
-                            <textarea id="message" name="message" rows="6" required placeholder="Tu mensaje"></textarea>
+                            <label for="message">Mensaje:</label>
+                            <textarea id="message" name="message" rows="6" autocomplete="off"></textarea>
                         </div>
                         <button type="submit" class="btn-primary">Enviar Mensaje</button>
                     </form>
@@ -188,17 +189,26 @@
         </main>
         <!--Pie de pagina-->
         <footer class="site-footer">
-            <p>&copy; 2025 Salvador Lopez Viilafan. Todos los derechos reservados.</p>
-            <div class="social-links">
-                <a href="#" aria-label="Linkedin"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" aria-label="Upwork"><i class="fab fa-upwork"></i></a>
+            <p>&copy; <span id="current-year"></span> Salvador Lopez Viilafan. Todos los derechos reservados.</p>
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/salvador-lopez-villafan-09286034a" target="_blank"
+                        aria-label="Linkedin"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/hlovs65" target="_blank" aria-label="GitHub"><i
+                            class="fab fa-github"></i></a>
+                    <a href="Https://www.upwork.com/freelancers/~014044bbdc15edd965?mp_source=share" target="_blank"
+                        aria-label="Upwork"><i class="fab fa-upwork"></i></a>
+                </div>
             </div>
+            <p>Hecho con pasion <i class="fa-solid fa-heart"></i> por el codigo.</p>
         </footer>
         <!--Boton flotante-->
         <a href="#inicio" class="scroll-to-top-btn">↑</a>
 
     </div>
+    <script>
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>
     <script src="main.js"></script>
 </body>
 

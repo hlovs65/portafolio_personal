@@ -1,26 +1,32 @@
-// script.js
+// main.js
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const body = document.body;
     const mainNavMovilLinks = document.querySelectorAll('.main-nav-movil a');
-    const siteSidebar = document.querySelector('.site-sidebar'); // Obtenemos el elemento sidebar directamente (Apunta a enlaces moviles)
-    const siteHeader = document.querySelector(".site-header"); // ¡Importante! Referencia al header fijo
-    const menuTransitionDuration = 300; // Duración de la transición del menú en milisegundos (0.3s)
-    const mobileBreakpoint = 767; // Tu breakpoint CSS para móvil
-    const scrollToTopBtn = document.querySelector(".scroll-to-top-btn"); // Asegúrate de tener esta constante
+    const siteSidebar = document.querySelector('.site-sidebar');
+    const siteHeader = document.querySelector(".site-header");
+    const menuTransitionDuration = 300;
+    const mobileBreakpoint = 767;
+    const scrollToTopBtn = document.querySelector(".scroll-to-top-btn");
 
-    // Función para alternar el                    
+    // Formulario variables:
+    const contactForm = document.getElementById('contactForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const subjectInput = document.getElementById('subject');
+    const messageInput = document.getElementById('message');
+
+    // ... (Tus funciones toggleMenu, isMobileView, etc. aquí) ...
     function toggleMenu() {
         body.classList.toggle('menu-open');
     }
 
-    // Función para saber si estamos en vista móvil
     function isMobileView() {
         return window.innerWidth <= mobileBreakpoint;
     }
 
-    // Escucha clics en el botón de hamburguesa
     if (hamburgerMenu) {
         hamburgerMenu.addEventListener('click', (event) => {
             event.stopPropagation();
@@ -28,8 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Función para alternar el boton flotante  
-    function toggleScrollButton () {
+    function toggleScrollButton() {
         if (window.pageYOffset > 200) {
             scrollToTopBtn.classList.add("show-scroll-btn");
         } else {
@@ -37,67 +42,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Cierra el menú y desplaza a la sección al hacer clic en un enlace de navegación
     mainNavMovilLinks.forEach(link => {
         link.addEventListener('click', (event) => {
-            // *** LA CLAVE: Condicionamos el comportamiento para móvil ***
             if (isMobileView()) {
-                event.preventDefault(); // Previene el comportamiento por defecto (solo en móvil)
+                event.preventDefault();
                 const targetId = link.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
 
                 if (body.classList.contains('menu-open')) {
-                    toggleMenu(); // Cierra el menú en móvil
-
-                    // Espera a que la transición del menú y el ajuste del contenido terminen
-                    // Añadimos un pequeño margen extra para mayor robustez
+                    toggleMenu();
                     setTimeout(() => {
                         if (targetElement) {
-                            // Obtenemos la altura del header *después* de que todo se haya reajustado
-                            // Esto es más preciso para el cálculo final del scroll
                             const currentHeaderHeight = siteHeader.offsetHeight;
-                            
                             const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                             const offsetPosition = elementPosition - currentHeaderHeight;
-                            
-                            // *** Opcional: Debugging en consola para ajustar la posición ***
-                            console.log('--- MOBILE SCROLL DEBUG ---');
-                            console.log('Target ID:', targetId);
-                            console.log('Current Header Height:', currentHeaderHeight);
-                            console.log('Element Top (before scroll):', targetElement.getBoundingClientRect().top);
-                            console.log('Window Y Offset:', window.pageYOffset);
-                            console.log('Calculated Element Position:', elementPosition);
-                            console.log('Final Offset Position:', offsetPosition);
-                            console.log('---------------------------');
-                            // *** Fin Debugging ***
 
                             window.scrollTo({
                                 top: offsetPosition,
                                 behavior: "smooth"
                             });
                         }
-                    }, menuTransitionDuration + 100); // Aumentado a 100ms extra para estabilidad
+                    }, menuTransitionDuration + 100);
                 }
             }
-            // Si NO es vista móvil, el `event.preventDefault()` no se llama,
-            // y el enlace funciona con su comportamiento nativo (desplazamiento a la ancla).
         });
     });
 
-    // Cierra el menú si se hace clic fuera del menú o en la hamburguesa (solo en móvil)
     document.addEventListener('click', (event) => {
-        if (isMobileView() && body.classList.contains('menu-open')) { // Aseguramos que solo actúe en móvil
-            // Aseguramos que el clic NO fue dentro del botón de hamburguesa
-            // Y NO fue dentro del contenedor del menú móvil (siteSidebar)
-            const isClickInsideMenuOrHamburger = hamburgerMenu.contains(event.target) || 
-                                                 (siteSidebar && siteSidebar.contains(event.target));            
+        if (isMobileView() && body.classList.contains('menu-open')) {
+            const isClickInsideMenuOrHamburger = hamburgerMenu.contains(event.target) ||
+                (siteSidebar && siteSidebar.contains(event.target));
             if (!isClickInsideMenuOrHamburger) {
                 toggleMenu();
             }
         }
     });
 
-    // *** Opcional: Cierra el menú automáticamente al cambiar a vista de escritorio ***
     window.addEventListener('resize', () => {
         if (!isMobileView() && body.classList.contains('menu-open')) {
             body.classList.remove('menu-open');
@@ -105,5 +85,101 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener("scroll", toggleScrollButton);
-    toggleScrollButton(); //Llam una vez al cargar 
+    toggleScrollButton();
+
+    // --- Nuevas funciones de validación ---
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function isValidName(name) {    // Valida que el nombre solo contenga letras, espacios, guiones y apóstrofes
+        const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s'-]{2,50}$/;  // Permite letras (con acentos), espacios, guiones, apóstrofes. Mínimo 2 caracteres, máximo 50.
+        return nameRegex.test(name);
+    }
+
+    function isValidSubject(subject) {   // Valida que el asunto tenga caracteres básicos. Mínimo 5, máximo 100.        
+        const subjectRegex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s.,!?-]{5,100}$/;  // Permite letras, números, espacios y signos de puntuación comunes.
+        return subjectRegex.test(subject);
+    }
+
+
+    function sanitizeMessage(message) {  // Limpia el mensaje de posibles inyecciones HTML básicas (no es seguridad completa)        
+        return message.replace(/</g, "&lt;").replace(/>/g, "&gt;");  // Reemplaza < > con sus entidades HTML para evitar que el navegador los interprete como etiquetas
+    }
+
+    // --- Lógica de Validación del Formulario ---
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (event) {
+
+            event.preventDefault();  //detenemos el envio del formulario por defecto.
+
+            let isValid = true; // Para la validación global de JS
+            const nameValue = nameInput.value.trim();
+            const emailValue = emailInput.value.trim();
+            const subjectValue = subjectInput.value.trim();
+            const messageValue = messageInput.value.trim();
+
+            // 1. Validación del Nombre
+            if (nameValue === '') {
+                alert('Por favor, ingresa tu nombre.');
+                nameInput.focus();
+                isValid = false;
+            } else if (!isValidName(nameValue)) {
+                alert('El nombre solo puede contener letras, espacios, guiones y apóstrofes. Debe tener entre 2 y 50 caracteres.');
+                nameInput.focus();
+                isValid = false;
+            }
+
+            // 2. Validación del Email
+            if (isValid) {
+                if (emailValue === '') {
+                    alert('Por favor, ingresa tu correo electrónico.');
+                    emailInput.focus();
+                    isValid = false;
+                } else if (!isValidEmail(emailValue)) {
+                    alert('Por favor, ingresa un formato de correo electrónico válido (ej. tu.email@dominio.com).');
+                    emailInput.focus();
+                    isValid = false;
+                }
+            }
+
+            // 3. Validación del Asunto
+            if (isValid) {
+                if (subjectValue === '') {
+                    alert('Por favor, ingresa un asunto para tu mensaje.');
+                    subjectInput.focus();
+                    isValid = false;
+                } else if (!isValidSubject(subjectValue)) {
+                    alert('El asunto contiene caracteres no permitidos o es demasiado corto/largo (mín. 5, máx. 100 caracteres).');
+                    subjectInput.focus();
+                    isValid = false;
+                }
+            }
+
+            // 4. Validación del Mensaje
+            if (isValid) {
+                if (messageValue === '') {
+                    alert('Por favor, ingresa un mensaje.');
+                    messageInput.focus();
+                    isValid = false;
+                } else if (messageValue.length < 10) {
+                    alert('Tu mensaje es demasiado corto (mínimo 10 caracteres).');
+                    messageInput.focus();
+                    isValid = false;
+                } else if (messageValue.length > 500) { // Ejemplo: máximo 500 caracteres
+                    alert('Tu mensaje es demasiado largo (máximo 500 caracteres).');
+                    messageInput.focus();
+                    isValid = false;
+                }
+            }
+
+
+            if (isValid) {  // Si todas las validaciones JS pasan
+                console.log('Formulario válido, enviando...');
+                this.submit();
+            }
+        });
+    }
 });
